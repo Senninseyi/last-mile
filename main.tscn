@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://n2o8q7jj0jew"]
+
+[ext_resource type="PackedScene" uid="uid://cnmjbvng6hi7k" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="TileSet" path="res://tiles.tres" id="2_tiles"]
+[ext_resource type="Script" path="res://city.gd" id="3_city"]
+[ext_resource type="Script" path="res://game.gd" id="4_game"]
+[ext_resource type="PackedScene" path="res://marker.tscn" id="5_marker"]
+[ext_resource type="Script" path="res://traffic.gd" id="6_traffic"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="7_hud"]
+
+[node name="Node2D" type="Node2D" unique_id=1612803926]
+script = ExtResource("4_game")
+
+[node name="City" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_tiles")
+script = ExtResource("3_city")
+
+[node name="Marker" parent="." instance=ExtResource("5_marker")]
+
+[node name="FuelCan" parent="." instance=ExtResource("5_marker")]
+color = Color(0.3, 0.65, 1, 1)
+
+[node name="Traffic" type="Node2D" parent="."]
+script = ExtResource("6_traffic")
+
+[node name="Player" parent="." unique_id=416727866 instance=ExtResource("1_ig7tw")]
+position = Vector2(96, 96)
+
+[node name="Arrow" type="Polygon2D" parent="."]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(12, 0, -8, -9, -8, 9)
+
+[node name="FuelArrow" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.3, 0.65, 1, 1)
+polygon = PackedVector2Array(10, 0, -6, -7, -6, 7)
+
+[node name="HUD" parent="." instance=ExtResource("7_hud")]
